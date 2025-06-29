@@ -1,0 +1,45 @@
+#!/bin/bash
+
+############################
+#
+# Author: Shiva Kumar
+# Date: 04/29/25
+#
+# Version: v1
+# This script tracks aws resource usage
+#
+###########################
+
+# AWS Resources
+# AWS EC2
+# AWS S3
+# AWS LAMBDA
+# AWS IAM USER
+
+#Output_file
+OUTPUT_FILE="resourceTracker"
+
+#Clear file before writing fresh data
+> "$OUTPUT_FILE"
+
+# List s3 buckets
+echo "Print list of S3 Buckets" >> "$OUTPUT_FILE"
+aws s3 ls >> "$OUTPUT_FILE"
+echo -e "\n" >> "$OUTPUT_FILE"
+
+# List EC2 Instances
+echo "Print list of EC2 Instances" >> "$OUTPUT_FILE"
+aws ec2 describe-instances >> "$OUTPUT_FILE"
+echo -e "\n" >> "$OUTPUT_FILE"
+
+# List Aws Lambda
+echo "Print list of Lamba Functions" >> "$OUTPUT_FILE"
+aws lambda list-functions >> "$OUTPUT_FILE"
+echo -e "\n" >> "$OUTPUT_FILE"
+
+# List IAM Users
+echo "Print list of IAM Users" >> "$OUTPUT_FILE"
+aws iam list-users >> "$OUTPUT_FILE"
+echo -e "\n" >> "$OUTPUT_FILE"
+
+echo "AWS Resources tracking completed. Results saved in $OUTPUT_FILE"
